@@ -1,0 +1,19 @@
+
+config:
+    name: "get department list"
+    variables:
+        access_token: qVGAbYpA7Sitt6MC5098rchEiTaWdmEaGjkjf_3ImgqOLL4BfewteFb6zcN_waigpCgePaWVaKb49d-L9RJwssmB-oWPLw10yYAOu70N2ZbVLcbnVT40H7NEMFNdE4n2zvs2wjCjK8hWlbn3xPtx82ktjPkjYBYTY_YNVuaG5Mg24sVLG6cc_RD0_KPq3k6Lks-2yJagUbzD4t_6ye9c9w
+        id: 1
+    base_url: "https://qyapi.weixin.qq.com/cgi-bin/department"
+
+teststeps:
+-
+    name: get token with params
+    request:
+        method: GET
+        url: list
+        params:
+            "access_token": $access_token
+            "id": $id
+    validate:
+        - eq: ["status_code", 200]

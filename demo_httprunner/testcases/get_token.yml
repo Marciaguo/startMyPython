@@ -1,0 +1,32 @@
+
+config:
+    name: "get token testcase with functions"
+    variables:
+        corpid: ww6c7ef90c916657d9
+        corpsecret: JPEu7UoM2Fd-xTvU65Mut4YmcUP1ZLEOiznvh02NHZE
+        id: 1
+    base_url: "https://qyapi.weixin.qq.com/cgi-bin"
+
+teststeps:
+-
+    name: get token with params
+    request:
+        method: GET
+        url: /gettoken
+        params:
+            "corpid": $corpid
+            "corpsecret": $corpsecret
+    extract:
+        - access_token: content.access_token
+    validate:
+        - eq: ["status_code", 200]
+-
+    name: get department list
+    request:
+        method: GET
+        url: /department/list
+        params:
+            "access_token": $access_token
+            "id": $id
+    validate:
+        - eq: ["status_code", 200]
